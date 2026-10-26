@@ -1,16 +1,34 @@
 """W5 综合选做：按合同完成函数，使用 challenges 中的公开测试验收。"""
 
+"""输入：[0, -2, 0, -2, 5]
+
+预期：
+{
+    "unique": [0, -2, 5],
+    "counts": {0: 2, -2: 2, 5: 1},
+    "repeated": {0, -2}
+}"""
 
 def summarize_values(values):
-    """整理普通整数列表；不修改输入。
+    unique = []
+    counts = {}
 
-    返回 {"unique": 首次出现顺序的去重列表,
-          "counts": 每个整数的出现次数字典,
-          "repeated": 出现次数大于 1 的整数集合}。
-    空输入返回 {"unique": [], "counts": {}, "repeated": set()}。
-    每次调用产生独立结果，结果中的列表、字典、集合可以单独修改。
-    """
-    raise NotImplementedError("请实现 summarize_values")
+    for value in values:
+        if value not in counts:
+            unique.append(value)
+            counts[value] = 0
+        counts[value] += 1
+
+    repeated = set()
+    for key, times in counts.items():
+        if times > 1:
+            repeated.add(key)
+
+    return {
+        "unique": unique,
+        "counts": counts,
+        "repeated": repeated,
+    }
 
 
 def apply_changes(original, updates, removals):

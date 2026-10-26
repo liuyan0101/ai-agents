@@ -12,3 +12,10 @@ def test_my_pop_example(pop_last):
 
     assert result == 4
     assert items == [7]
+
+
+def test_my_positive_squares_case(positive_squares):
+    values = [0, 3, 3, -1]
+    result = positive_squares(values)
+    assert result == [9, 9]
+    assert values == [0, 3, 3, -1]
